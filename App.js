@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// MyAwesomeShop/App.js
+import React from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { AuthProvider } from './src/contexts/AuthContext';
+import { NotificationsProvider } from './src/contexts/NotificationsContext'; // Import
+import AppNavigator from './src/navigation/AppNavigator';
+import { customTheme } from './src/constants/theme';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider theme={customTheme}>
+      <AuthProvider>
+        <NotificationsProvider> {/* Wrap AppNavigator */}
+          <AppNavigator />
+        </NotificationsProvider>
+      </AuthProvider>
+    </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
